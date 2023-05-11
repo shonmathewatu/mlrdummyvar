@@ -165,3 +165,57 @@ scatter.smooth(x = children,
                xlab = "age(years)",
                ylab = "insurance charges" )
 
+# scatter.smoot for categorical data.
+attach(insurance_data)
+
+plot(smoker,
+    charges,
+    main = "Charges by smoker sattus",
+    xlab = "smoker",
+    ylab = "insurance charges")
+
+
+
+plot(region,
+     charges,
+     main = "Charges by smoker sattus",
+     xlab = "smoker",
+     ylab = "insurance charges")
+
+cor(charges, bmi)
+
+
+
+
+#normality
+
+
+
+
+qqnorm(age)
+qqline(age)
+
+normality_age_test <- shapiro.test(insurance_data$age)
+normality_age_test$p.value
+
+#p value is less than 0.05. so it is not normally distributed
+# cant check the factor variables with this approch
+
+with(insurance_data,
+     tapply(charges, smoker, shapiro.test))
+
+
+with(insurance_data,
+     tapply(charges, region, shapiro.test))
+
+#colinearity
+install.packages("car")
+library(car)
+# variables should be close to 1 but under 5
+# 10 indicaes that the vars are not needed
+#
+
+
+
+
+
